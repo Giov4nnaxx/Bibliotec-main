@@ -1,36 +1,26 @@
-// const prevBtn = document.getElementById("prev-btn");
-// const nextBtn = document.getElementById("next-btn");
-// const carousselContent = document.getElementById("caroussel-content");
+// ============================
+//  Dependências
+// ============================
+import express from "express";
+import bodyParser from "body-parser";
+import cors from "cors";
+import usuarioRoutes from "./routes/usuario.routes.js"
 
+// ============================
+//  Configuração do servidor
+// ============================
+const app = express();
+app.use(cors());
+app.use(bodyParser.json());
 
-// const images = [
-//     'public/images/ft biblioteca.jpg',
-//     'public/images/ft livros.jpg',
-//     'public/imagesft biblioteca2.jpg',
-//     'public/images/ft livros2.jpg',
-//     'public/images/ft biblioteca3.jpg',
-//     'public/images/ft livros3.jpg'
-// ];
+app.get("/", (req, res)=>{
+  res.send("API rodando com sucesso")
+})
 
-// let currentIndex = 0;
+app.use("/usuarios", usuarioRoutes)
 
-// function updateCaroussel() {
-//     const imgPath = images[currentIndex];
-
-//     carousselContent.style.backgroundImage = `url("${imgPath}")`;
-// }
-
-// nextBtn.addEventListener("click", () => {
-//     currentIndex = (currentIndex + 1) % images.length;
-//     updateCaroussel();
-// });
-
-// prevBtn.addEventListener("click", () => {
-//     currentIndex = (currentIndex - 1 + images.length) % images.length;
-//     updateCaroussel();
-// });
-
-
-// updateCaroussel();
-
-console.log("Vapo")
+// ============================
+//  Inicia o servidor
+// ============================
+const PORT = 3000;
+app.listen(PORT, () => console.log(`☠️ Servidor rodando na porta ${PORT}`));
